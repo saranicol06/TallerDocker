@@ -4,33 +4,34 @@
 
 Este taller tiene como objetivo aprender a:
 
-Crear un Dockerfile desde cero
+- Crear un Dockerfile desde cero
 
-Construir imágenes propias
+- Construir imágenes propias
 
-Crear una aplicación Python con Flask
+- Crear una aplicación Python con Flask
 
-Conectarla a una base de datos Redis
+- Conectarla a una base de datos Redis
 
-Ejecutar la aplicación dentro de contenedores
+- Ejecutar la aplicación dentro de contenedores
 
-Usar docker-compose para orquestar múltiples servicios
+- Usar docker-compose para orquestar múltiples servicios
 
-Implementar un balanceador de carga usando Traefik
+- Implementar un balanceador de carga usando Traefik
 
-Publicar una imagen en Docker Hub
+- Publicar una imagen en Docker Hub
 
 #️⃣ 2. Preparación del entorno
 
 Se creó la siguiente estructura:
 
+```
 friendlyhello/
 │-- app.py
 │-- Dockerfile
 │-- requirements.txt
 │-- docker-compose.yaml
 │-- data/        (generada automáticamente por Redis)
-
+```
 
 Todos los archivos se trabajaron en:
 
@@ -40,6 +41,7 @@ C:\Users\saran\Sites\friendlyhello
 
 Archivo: app.py
 
+```python 
 from flask import Flask
 from redis import Redis, RedisError
 import os
@@ -63,27 +65,30 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
-
+```
 
 La aplicación devuelve:
 
-Un saludo
+- Un saludo
 
-El hostname del contenedor
+- El hostname del contenedor
 
-El número de visitas almacenado en Redis
+- El número de visitas almacenado en Redis
 
 #️⃣ 4. Dependencias
 
 Archivo: requirements.txt
 
+```
 Flask
 Redis
+```
 
 #️⃣ 5. Creación del Dockerfile
 
 Archivo: Dockerfile
 
+```
 FROM python:3-slim
 WORKDIR /app
 COPY . /app
@@ -91,51 +96,59 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 80
 ENV NAME World
 CMD ["python", "app.py"]
-
+```
 
 Este Dockerfile:
 
-Usa Python 3-slim como base
+- Usa Python 3-slim como base
 
-Copia el código al contenedor
+- Copia el código al contenedor
 
-Instala dependencias
+- Instala dependencias
 
-Expone el puerto 80
+- Expone el puerto 80
 
-Ejecuta la aplicación
+- Ejecuta la aplicación
 
 #️⃣ 6. Construcción de la imagen
 
 Comando:
 
+```
 docker build -t saranicol06/friendlyhello .
-
+```
 
 Se verificó con:
 
+```
 docker images
+```
 
 #️⃣ 7. Subida de imagen al Docker Hub
 
 Iniciar sesión:
 
+```
 docker login
-
+```
 
 Etiquetar la imagen:
 
+```
 docker tag friendlyhello saranicol06/friendlyhello
-
+```
 
 Publicar:
 
+```
 docker push saranicol06/friendlyhello
+```
 
 #️⃣ 8. Creación del archivo docker-compose.yaml
 
 Archivo: docker-compose.yaml
 
+```
 version: "3.8"
 
 services:
@@ -172,7 +185,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
       - "traefik.enable=true"
-
+```
 
 Este archivo crea 3 servicios:
 
@@ -180,13 +193,16 @@ Servicio	Función
 web	Aplicación Flask dentro de un contenedor
 redis	Base de datos en memoria
 traefik	Balanceador de carga y reverse proxy
+
 #️⃣ 9. Levantar toda la aplicación
 docker compose up -d
 
 
 Ver contenedores:
 
+```
 docker ps
+```
 
 #️⃣ 10. Probar la aplicación
 
@@ -205,6 +221,7 @@ docker compose up -d --scale web=5
 
 Al recargar varias veces http://localhost:4000
  verás hostnames diferentes, uno por contenedor.
+ 
 
 #️⃣ 12. Conclusiones
 
@@ -220,10 +237,5 @@ Traefik se usó como balanceador para manejar múltiples instancias.
 
 La imagen final se publicó en Docker Hub correctamente.
 
-✔ Taller completado exitosamente.
 
-Traefik se usó como balanceador para manejar múltiples instancias.
 
-La imagen final se publicó en Docker Hub correctamente.
-
-✔ Taller completado exitosamente.
