@@ -1,8 +1,6 @@
-Taller Docker: Construcción, Contenedores, Compose y Balanceo
-Autores: Sara Nicol Zuluaga, Axel Daniel Bedoya
-Fecha: 16/11/2025
-
-#️ 1. Introducción
+📘 Taller Docker: Construcción, Contenedores, Compose y Balanceo
+👩‍💻 Autora: Sara Nicol Zuluaga, Axel Daniel Bedoya
+#️⃣ 1. Introducción
 
 Este taller tiene como objetivo aprender a:
 
@@ -22,7 +20,7 @@ Implementar un balanceador de carga usando Traefik
 
 Publicar una imagen en Docker Hub
 
-#️2. Preparación del entorno
+#️⃣ 2. Preparación del entorno
 
 Se creó la siguiente estructura:
 
@@ -38,7 +36,7 @@ Todos los archivos se trabajaron en:
 
 C:\Users\saran\Sites\friendlyhello
 
-#️ 3. Creación de la aplicación Flask
+#️⃣ 3. Creación de la aplicación Flask
 
 Archivo: app.py
 
@@ -75,14 +73,14 @@ El hostname del contenedor
 
 El número de visitas almacenado en Redis
 
-#️ 4. Dependencias
+#️⃣ 4. Dependencias
 
 Archivo: requirements.txt
 
 Flask
 Redis
 
-#️ 5. Creación del Dockerfile
+#️⃣ 5. Creación del Dockerfile
 
 Archivo: Dockerfile
 
@@ -107,7 +105,7 @@ Expone el puerto 80
 
 Ejecuta la aplicación
 
-#️ 6. Construcción de la imagen
+#️⃣ 6. Construcción de la imagen
 
 Comando:
 
@@ -118,7 +116,7 @@ Se verificó con:
 
 docker images
 
-#️ 7. Subida de imagen al Docker Hub
+#️⃣ 7. Subida de imagen al Docker Hub
 
 Iniciar sesión:
 
@@ -134,7 +132,7 @@ Publicar:
 
 docker push saranicol06/friendlyhello
 
-#️ 8. Creación del archivo docker-compose.yaml
+#️⃣ 8. Creación del archivo docker-compose.yaml
 
 Archivo: docker-compose.yaml
 
@@ -182,7 +180,7 @@ Servicio	Función
 web	Aplicación Flask dentro de un contenedor
 redis	Base de datos en memoria
 traefik	Balanceador de carga y reverse proxy
-#️ 9. Levantar toda la aplicación
+#️⃣ 9. Levantar toda la aplicación
 docker compose up -d
 
 
@@ -190,7 +188,7 @@ Ver contenedores:
 
 docker ps
 
-#️ 10. Probar la aplicación
+#️⃣ 10. Probar la aplicación
 
 ✔ App corriendo:
 http://localhost:4000
@@ -198,7 +196,7 @@ http://localhost:4000
 ✔ Dashboard de Traefik:
 http://localhost:8080
 
-#️ 11. (Opcional) Probar balanceo de carga
+#️⃣ 11. (Opcional) Probar balanceo de carga
 
 Escalar la aplicación:
 
@@ -208,7 +206,7 @@ docker compose up -d --scale web=5
 Al recargar varias veces http://localhost:4000
  verás hostnames diferentes, uno por contenedor.
 
-#️ 12. Conclusiones
+#️⃣ 12. Conclusiones
 
 Docker permite crear aplicaciones aisladas, portables y reproducibles.
 
@@ -217,6 +215,12 @@ Un Dockerfile define exactamente cómo construir una imagen.
 Docker Compose permite orquestar varios servicios fácilmente.
 
 Redis se integró como servicio externo sin instalar nada en Windows.
+
+Traefik se usó como balanceador para manejar múltiples instancias.
+
+La imagen final se publicó en Docker Hub correctamente.
+
+✔ Taller completado exitosamente.
 
 Traefik se usó como balanceador para manejar múltiples instancias.
 
