@@ -1,6 +1,7 @@
- README – Taller Docker: Construcción, Contenedores, Compose y Balanceo
- Autores: Sara Nicol Zuluaga, Axel Daniel Bedoya
- Fecha: 16/11/2025
+Taller Docker: Construcción, Contenedores, Compose y Balanceo
+Autores: Sara Nicol Zuluaga, Axel Daniel Bedoya
+Fecha: 16/11/2025
+
 #️ 1. Introducción
 
 Este taller tiene como objetivo aprender a:
